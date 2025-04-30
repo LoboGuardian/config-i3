@@ -1,12 +1,32 @@
+#==========================================================
+# 
+# ██████╗ ██╗   ██╗███╗   ██╗████████╗██████╗  ██████╗
+# ██╔══██╗██║   ██║████╗  ██║╚══██╔══╝██╔══██╗██╔════╝
+# ██║  ██║██║   ██║██╔██╗ ██║   ██║   ██████╔╝██║     
+# ██║  ██║██║   ██║██║╚██╗██║   ██║   ██╔══██╗██║     
+# ██████╔╝╚██████╔╝██║ ╚████║   ██║   ██║  ██║╚██████╗
+# ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝
+#
+#   Dunst Notification Daemon Configuration
+#   See the complete reference: https://dunst-project.org/documentation/dunstrc
+#   Author: LoboGuardian
+#   Date: 2025-04-30
+#   Version: 1.0
+#   License: GPLv3
+#   Main configuration file for the Dunst notification daemon.
+#   Styling inspired by the Numix color scheme.
+#
+#==========================================================
+
 [global]
     font = Hack 10
     # padding between text and separator
     padding = 8
     # horizontal padding
     horizontal_padding = 8
-    # Similar al background de Numix
-    frame_color = "#555555"
-    # Un borde sutil
+    # Similar to background of Numix 
+    frame_color = "#555555" 
+    # A subtle edge 
     frame_width = 1
 
     # allow a small subset of html markup:
@@ -112,7 +132,7 @@
     #  * foreground: use the same color as the foreground
     #  * frame: use the same color as the frame.
     #  * anything else will be interpreted as a X color
-    # Similar al separatorcolor de Numix
+    # Similar to separatorcolor of Numix
     separator_color = "#707070"
 
     # print a notification on startup
@@ -152,17 +172,17 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the '#' and following  would be interpreted as a comment.
-    background = "#2A2A2A"  ; background-alt de Numix
-    foreground = "#A3A3A3"  ; foreground-alt de Numix
+    background = "#2A2A2A"  ; background-alt of Numix
+    foreground = "#A3A3A3"  ; foreground-alt of Numix
     timeout = 10
 
 [urgency_normal]
-    background = "#555555"  ; background de Numix
-    foreground = "#DCDCDC"  ; foreground de Numix
+    background = "#555555"  ; background of Numix
+    foreground = "#DCDCDC"  ; foreground of Numix
     timeout = 10
 
 [urgency_critical]
-    background = "#E74C3C"  ; alert de Numix
+    background = "#E74C3C"  ; alert of Numix
     foreground = "#FFFFFF"
     timeout = 0
 
@@ -218,3 +238,11 @@
 #    summary = *twitter.com*
 #    urgency = normal
 #
+
+[notify-send]
+    appname = "notify-send"
+    format = "<b>%s</b>\n%b"
+
+[dunstify]
+    appname = "dunstify"
+    format = "<b>%s</b>\n%b"

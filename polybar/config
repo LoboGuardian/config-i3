@@ -9,28 +9,33 @@
 ;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
 ;
 ;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/polybar/polybar
+;   Polybar Configuration
+;   See the complete reference: https://github.com/polybar/polybar/wiki
+;   Author: LoboGuardian
+;   Date: 2025-04-30
+;   Version: 1.0
+;   License: GPLv3
+;   Main configuration file for the Polybar.
+;   Inspired by the Numix color scheme.
 ;
-;   The README contains a lot of information
 ;
 ;==========================================================
 
 [colors]
+; A dark gray for the main background
 background = #373737
-; Un gris oscuro para el fondo principal
+; A slightly darker gray for subtle contrasts
 background-alt = #2A2A2A
-; Un gris ligeramente más oscuro para contrastes sutiles
+; A light gray for the main text
 foreground = #DCDCDC
-; Un gris claro para el texto principal
+; A slightly darker gray for secondary text
 foreground-alt = #A3A3A3
-; Un gris un poco más oscuro para texto secundario
+; A vibrant blue for highlighted elements
 primary = #4689F1
-; Un azul vibrante para elementos destacados (puede variar en Numix)
+; A purple/magenta for other elements
 secondary = #913175
-; Un morado/magenta para otros elementos (opcional)
+; Red for important notifications
 alert = #E74C3C
-; Un rojo para notificaciones importantes
 
 [bar/example]
 monitor = ${env:MONITOR:}
@@ -46,7 +51,7 @@ foreground = ${colors.foreground}
 background = ${colors.background}
 
 line-size = 1
-line-color = #555555 ; Un gris más oscuro para la línea
+line-color = #555555 ; A darker gray for the line
 
 border-top-size = 0
 border-bottom-size = 0

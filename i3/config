@@ -1,57 +1,75 @@
+# i3 config file (v4)
+# See the complete reference: http://i3wm.org/docs/userguide.html
+# Author: LoboGuardian
+# Date: 2025-04-30
+# Version: 1.0
+# License: GPLv3
+# Main configuration file for the i3 window manager.
+# Inspired by the Numix color scheme.
+
+# Set the modifier key
 set $mod Mod4
+
+# Set the default font
 font pango:Hack 9
+
+# Define the modifier key for floating windows
 floating_modifier $mod
 
-# start a terminal
+# Start a terminal
 set $term alacritty
 bindsym $mod+Return exec $term
 
-# kill focused window
+# Kill the focused window
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-#bindsym ctrl+space exec rofi -show run
-bindsym ctrl+space exec "rofi -show combi -modi window,run,combi -combi-modi window,run"
 #bindsym ctrl+space exec dmenu_run
 
-# alternatively, you can use the cursor keys:
+# Start program launcher (Rofi)
+bindsym ctrl+space exec "rofi -show combi -modi window,run,combi -combi-modi window,run"
+#bindsym ctrl+space exec rofi -show run
+
+# Focus navigation using the arrow keys
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# alternatively, you can use the cursor keys:
+# Move windows using the arrow keys
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
+# Split container horizontally
 bindsym $mod+h split h
 
-# split in vertical orientation
+# Split container vertically
 bindsym $mod+v split v
 
+# Toggle between horizontal and vertical split
 bindsym $mod+t split toggle
 
-# enter fullscreen mode for the focused container
+# Toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
+# Change container layout (stacking, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 bindsym $mod+Shift+w sticky toggle
 
-# toggle tiling / floating
+# Toggle tiling / floating for the focused container
 bindsym $mod+Shift+space floating toggle
 
-# change focus between tiling / floating windows
+# Switch focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-# focus the parent container
+# Focus the parent container
 bindsym $mod+a focus parent
 
+# Define names for workspaces
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -65,7 +83,7 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-# switch to workspace
+# Switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
@@ -77,7 +95,7 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
-# move focused container to workspace
+# Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3
@@ -89,47 +107,52 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# reload the configuration file
+# Reload the i3 configuration
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
+
+# Exit i3 (log out of the X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
+# Resize window mode (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
-        # same bindings, but for the arrow keys
+        # Resize bindings using arrow keys
         bindsym Left resize shrink width 5 px or 5 ppt
         bindsym Down resize grow height 5 px or 5 ppt
         bindsym Up resize shrink height 5 px or 5 ppt
         bindsym Right resize grow width 5 px or 5 ppt
 
-        # back to normal: Enter or Escape
+        # Exit resize mode
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
+# Move window mode
 mode "move" {
+        # Move bindings using hjkl
         bindsym h move left
         bindsym j move down
         bindsym k move up
         bindsym l move right
 
+        # Exit move mode
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
 bindsym $mod+m mode "move"
 
 #
-# Status Bar:
+# Status Bar (Polybar)
 #
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
+# Window borders and colors
 # class                 border  backgr. text    indicator child_border
 client.focused          #000000 #000000 #ffffff #000000   #000000
 client.focused_inactive #000000 #000000 #ffffff #000000   #000000
@@ -146,6 +169,7 @@ client.background       #ffffff
 ########################################################################
 ########################################################################
 
+# Start Alacritty on workspace 1
 exec --no-startup-id "i3-msg 'workspace 1; exec alacritty'"
 
 ########################################################################
@@ -156,6 +180,7 @@ exec --no-startup-id "i3-msg 'workspace 1; exec alacritty'"
 ########################################################################
 ########################################################################
 
+# Enable floating for specific applications
 for_window [title="Calculator"] floating enable
 for_window [title="Timer"] floating enable
 for_window [class="^.*"] border pixel 1
@@ -175,20 +200,20 @@ for_window [class="cachyos-welcome"] floating enable
 ########################################################################
 ########################################################################
 
-
+# Volume control
 # bindsym XF86AudioRaiseVolume exec "pamixer -ui 3 && pamixer --get-volume > /tmp/xobpipe"
 # bindsym XF86AudioLowerVolume exec "pamixer -ud 3 && pamixer --get-volume > /tmp/xobpipe"
 # mute sound
 # bindsym XF86AudioMute exec "amixer sset Master toggle | sed -En '/\[on\]/ s/.*\[([0-9]+)%\].*/\1/ p; /\[off\]/ s/.*/0/p' | head -1 > /tmp/xobpipe"
 
-# Subir volumen (normalmente F9)
+# Volume up (usually F9)
 bindsym $mod+Shift+F10 exec "pamixer -ui 3 && pamixer --get-volume > /tmp/xobpipe"
-# Bajar volumen (normalmente F8)
+# Volume down (usually F8)
 bindsym $mod+Shift+F9 exec "pamixer -ud 3 && pamixer --get-volume > /tmp/xobpipe"
-# Mutear sonido (normalmente F10)
+# Mute sound (usually F10)
 bindsym $mod+Shift+F8 exec "amixer sset Master toggle | sed -En '/\[on\]/ s/.*\[([0-9]+)%\].*/\1/ p; /\[off\]/ s/.*/0/p' | head -1 > /tmp/xobpipe"
 
-
+# Launch applications
 bindsym $mod+Shift+p exec gnome-calculator
 #bindsym $mod+p exec ~/.scripts/dmshot
 
@@ -201,7 +226,8 @@ bindsym $mod+l exec "sleep 0.1 && i3lock --blur 5"
 bindsym $mod+b exec cachy-browser
 bindsym $mod+c exec zeditor
 
-bindsym $mod+Escape exec "i3-nagbar -t warning -m '¿Qué quieres hacer?' -b 'Cerrar sesión' 'i3-msg exit' -b 'Reiniciar' 'systemctl reboot' -b 'Apagar' 'systemctl poweroff'"
+# Power menu
+bindsym $mod+Escape exec "i3-nagbar -t warning -m 'What do you want to do?' -b 'Log off' 'i3-msg exit' -b 'Reboot' 'systemctl reboot' -b 'Shut down' 'systemctl poweroff'"
 
 ########################################################################
 ########################################################################
@@ -211,22 +237,27 @@ bindsym $mod+Escape exec "i3-nagbar -t warning -m '¿Qué quieres hacer?' -b 'Ce
 ########################################################################
 ########################################################################
 
+# Keyboard layout switcher (Caps Lock) - Uncomment to enable us/ru switch
 ## Here is a language switcher by pressing capslock button,
 ## and the capslock functionality available by using shift+capslock.
 ## Uncomment to enable 'us' to/from 'ru' switch. change to language(s) you prefer more.
 
 #exec_always setxkbmap -option grp:caps_toggle "us,ru" -option "grp:caps_toggle,grp_led:caps"
 
+# Configure display settings
 exec xrandr --output HDMI-1 --mode 1920x1080 --rate 60 --scale 1x1
 #exec xrandr --auto --output HDMI-1 --mode 1920x1080 --above HDMI-2
 
+# Set wallpaper
 exec feh --bg-fill ~/.config/i3/wallpaper.png
 
+# Autostart applications
 exec --no-startup-id dunst
 exec --no-startup-id picom
 exec --no-startup-id redshift
 exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
+# Status bar integration (Xob)
 exec_always mkfifo /tmp/xobpipe && tail -f /tmp/xobpipe | xob -t 2170 & disown
 #exec ~/.i3/launch.sh
