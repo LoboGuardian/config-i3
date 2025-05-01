@@ -54,8 +54,8 @@ while true; do
         bytes[past_tx_$interface]=${bytes[now_tx_$interface]}
     done
 
-    echo "Download: $(print_bytes $down) / Upload: $(print_bytes $up)"
-    # echo "Download: $(print_bit $down) / Upload: $(print_bit $up)"
+    echo "Rx: $(print_bytes $down) / Tx: $(print_bytes $up)"
+    # echo "Rx: $(print_bit $down) / Tx: $(print_bit $up)"
 
     sleep $INTERVAL
 done

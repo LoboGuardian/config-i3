@@ -72,7 +72,7 @@ font-4 = FontAwesome5Brands:style=Solid:pixelsize=10;3
 
 
 modules-left = i3 sp2 info-hackspeed sp2
-modules-right = weather sp1 info-eyestrain sp1 network-traffic sp1 updates sp2 date sp2
+modules-right = info-eyestrain sp1 info-camera-mic sp1 pipewire-simple sp1 network-networkmanager sp1 network-traffic sp1 updates sp1 battery-combined-shell  sp2 date sp2
 
 tray-position = right
 tray-padding = 0
@@ -157,12 +157,26 @@ interval = 600
 label-foreground = ${colors.foreground}
 label-background = ${colors.background}
 
+[module/pipewire-simple]
+type = custom/script
+exec = ~/.config/polybar/scripts/pipewire-simple.sh
+interval = 3
+click-right = exec pavucontrol &
+click-left = ~/.config/polybar/scripts/pipewire-simple.sh --mute &
+scroll-up = ~/.config/polybar/scripts/pipewire-simple.sh --up &
+scroll-down = ~/.config/polybar/scripts/pipewire-simple.sh --down &
+
 [module/info-eyestrain]
 type = custom/script
 exec = ~/.config/polybar/scripts/info-eyestrain.sh
 interval = 60
 label-foreground = ${colors.foreground}
 label-background = ${colors.background}
+
+[module/info-camera-mic]
+type = custom/script
+exec = ~/.config/polybar/scripts/info-camera-mic.sh
+interval = 5
 
 [module/network-traffic]
 type = custom/script
@@ -171,6 +185,11 @@ tail = true
 label-foreground = ${colors.foreground}
 label-background = ${colors.background}
 
+[module/network-networkmanager]
+type = custom/script
+exec = ~/.config/polybar/scripts/network-networkmanager.sh
+tail = true
+
 [module/updates]
 type = custom/script
 exec = ~/.config/polybar/scripts/arch_updates.sh
@@ -178,6 +197,11 @@ interval = 60
 label = %output%
 label-foreground = ${colors.foreground}
 label-background = ${colors.background}
+
+[module/battery-combined-shell]
+type = custom/script
+exec = ~/.config/polybar/scripts/battery-combined-shell.sh
+interval = 10
 
 [module/date]
 type = internal/date
